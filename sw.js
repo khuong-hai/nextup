@@ -1,5 +1,5 @@
 // Service Worker — cache toàn bộ app để chạy offline hoàn toàn
-const CACHE_NAME = "goi-ten-ngau-nhien-v67";
+const CACHE_NAME = "goi-ten-ngau-nhien-v68";
 const ASSETS = [
   "./",
   "./index.html",
