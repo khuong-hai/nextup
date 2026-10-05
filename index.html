@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXTUP</title>
+<meta name="description" content="NEXTUP — ứng dụng offline giúp giáo viên gọi ngẫu nhiên học sinh kiểm tra bài cũ.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icons/favicon.png">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<meta name="theme-color" content="#155DFC">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="topbar-inner" id="topbar-inner"></div>
+  </header>
+
+  <main class="main" id="main"></main>
+
+  <button class="fab hidden" id="fab" title="Thêm lớp mới"></button>
+
+  <nav class="bottomnav">
+    <div class="bottomnav-inner" id="bottomnav-inner"></div>
+  </nav>
+</div>
+
+<div id="modalRoot"></div>
+<div class="toast" id="toast"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/vendor/xlsx.full.min.js"></script>
+<script src="js/license-web.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // FAB icon (add) — chèn sau khi icons.js sẵn sàng
+  document.getElementById("fab").innerHTML = icon("add");
+  // Đăng ký service worker để dùng offline như một "app" cài được (PWA)
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>

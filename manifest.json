@@ -1,0 +1,16 @@
+{
+  "name": "NEXTUP",
+  "short_name": "NEXTUP",
+  "description": "NEXTUP — gọi ngẫu nhiên học sinh kiểm tra bài cũ, hoạt động offline",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#EAF4FB",
+  "theme_color": "#155DFC",
+  "lang": "vi",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

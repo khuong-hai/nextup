@@ -1,0 +1,1107 @@
+/* =========================================================
+   GỌI TÊN NGẪU NHIÊN — Design system "Kinetic Educator"
+   Toàn bộ font/icon được nhúng cục bộ — không cần internet
+   ========================================================= */
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/plus-jakarta-sans-vietnamese-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/plus-jakarta-sans-vietnamese-600-normal.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/plus-jakarta-sans-vietnamese-700-normal.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/plus-jakarta-sans-vietnamese-800-normal.woff2") format("woff2");
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+
+:root{
+  /* ---- Colors — NEXTUP "modern blue / education" palette ---- */
+  --primary:#155DFC;
+  --on-primary:#ffffff;
+  --primary-container:#3B82F6;
+  --on-primary-container:#0B2E42;
+  --primary-fixed:#D9E6FA;
+  --primary-dark:#0F3B54;      /* header/footer/splash gradient start */
+  --primary-dark-end:#123E8C;  /* gradient end */
+
+  --secondary:#993C1D;
+  --on-secondary:#ffffff;
+  --secondary-container:#F5821F;
+  --on-secondary-container:#5a2400;
+
+  --tertiary:#0d5c55;
+  --on-tertiary:#ffffff;
+  --tertiary-container:#1D8A8A;
+  --on-tertiary-container:#eafaf7;
+  --tertiary-fixed:#bff0e6;
+  --tertiary-fixed-dim:#5cc9bb;
+
+  /* 4 màu chức năng — mỗi màu gắn với 1 kiểu game */
+  --game-wheel:#1D8A8A;    --game-wheel-dark:#12595F;
+  --game-cards:#2B6FDB;    --game-cards-dark:#123E8C;
+  --game-slot:#F5821F;     --game-slot-dark:#B85A0E;
+  --game-shuffle:#8B5FBF;  --game-shuffle-dark:#5A3785;
+
+  --accent-energy:#155DFC;
+  --ink-deep:#0B2436;
+
+  --error:#ba1a1a;
+  --on-error:#ffffff;
+  --error-container:#ffdad6;
+  --on-error-container:#93000a;
+
+  --background:#EAF4FB;
+  --on-background:#0B2436;
+  --surface:#EAF4FB;
+  --surface-base:#f8fafc;
+  --surface-paper:#ffffff;
+  --surface-container-lowest:#ffffff;
+  --surface-container-low:#EAF4FB;
+  --surface-container:#D9E9FB;
+  --surface-container-high:#C7DFF8;
+  --surface-container-highest:#B5D4F4;
+
+  --on-surface:#0B2436;
+  --on-surface-variant:#5F5E5A;
+  --outline:#888780;
+  --outline-variant:#C2C6D5;
+
+  /* ---- Spacing (8px rhythm) ---- */
+  --xs:4px; --sm:12px; --md:24px; --lg:40px; --xl:64px; --gutter:24px; --margin:32px;
+
+  /* ---- Radius ---- */
+  --r-sm:4px; --r:8px; --r-md:12px; --r-lg:16px; --r-xl:24px; --r-full:9999px;
+
+  /* ---- Shadows ---- */
+  --shadow:0px 4px 20px rgba(15,23,42,.08);
+  --shadow-active:0px 12px 32px rgba(0,88,190,.12);
+  --shadow-spin:0px 12px 32px rgba(59,130,246,.15);
+
+  --max-width:1280px;
+}
+
+/* ---- Chế độ tối: ghi đè các biến màu bề mặt/nền, phần còn lại của CSS dùng
+   var(--...) nên tự động đổi theo mà không cần thêm luật riêng cho từng khối. ---- */
+body.dark{
+  --background:#0B1420;
+  --on-background:#E7EEF5;
+  --surface:#0B1420;
+  --surface-base:#0B1420;
+  --surface-paper:#141F2E;
+  --surface-container-lowest:#141F2E;
+  --surface-container-low:#1B2838;
+  --surface-container:#223146;
+  --surface-container-high:#2A3B52;
+  --surface-container-highest:#33475F;
+  --on-surface:#E7EEF5;
+  --on-surface-variant:#A9B6C4;
+  --outline:#6B7B8C;
+  --outline-variant:#334455;
+  --primary-fixed:#16324F;
+  --tertiary-fixed:#123B38;
+  --tertiary-fixed-dim:#1C5C56;
+  --error-container:#4A1E1E;
+  --on-error-container:#FFB4AB;
+  background-image:radial-gradient(rgba(255,255,255,.05) 2px, transparent 2px);
+}
+
+*{box-sizing:border-box;}
+/* Luôn chừa sẵn chỗ cho thanh cuộn dọc (dù trang đó có cần cuộn hay không) —
+   tránh việc bề ngang nội dung đổi vài px giữa 1 trang có cuộn (vd Danh sách
+   lớp dài) và 1 trang không cuộn (Cài đặt/Hồ sơ), làm logo/header .hero-card
+   (margin:0 auto, tự canh giữa) bị "giật" lệch ngang mỗi lần chuyển trang. */
+html{overflow-y:scroll;scrollbar-gutter:stable;}
+html,body{height:100%;}
+body{
+  margin:0;
+  font-family:"Plus Jakarta Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--background);
+  color:var(--on-background);
+  background-image:radial-gradient(rgba(0,65,145,.05) 2px, transparent 2px);
+  background-size:24px 24px;
+  -webkit-font-smoothing:antialiased;
+}
+button, input, select{font-family:inherit;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;border:none;background:none;font-size:inherit;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* ---------- Layout shell ---------- */
+#app{display:flex;flex-direction:column;min-height:100dvh;}
+.max-w{width:100%;max-width:var(--max-width);margin:0 auto;}
+.screen{display:flex;flex-direction:column;flex:1;width:100%;}
+.hidden{display:none !important;}
+.main{flex:1;width:100%;max-width:var(--max-width);margin:0 auto;padding:var(--md);padding-bottom:112px;box-sizing:border-box;}
+
+/* ---------- Top App Bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(248,249,255,.9);
+  backdrop-filter:blur(8px);
+  box-shadow:0 1px 0 rgba(15,23,42,.06);
+}
+.topbar-inner{
+  max-width:var(--max-width);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;padding:0 var(--md);
+}
+.topbar h1{
+  font-size:24px;line-height:32px;font-weight:700;color:var(--primary);
+  margin:0;letter-spacing:-.01em;
+}
+.icon-btn{
+  width:40px;height:40px;border-radius:var(--r-full);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--primary);transition:background .15s, transform .15s;
+}
+.icon-btn:hover{background:var(--surface-container-low);}
+.icon-btn:active{transform:scale(.92);}
+.spacer{width:40px;}
+
+/* ---------- Bottom Nav ---------- */
+.bottomnav{
+  position:fixed;bottom:0;left:0;width:100%;z-index:50;
+  background:var(--surface-container-lowest);
+  box-shadow:0 -4px 20px rgba(15,23,42,.08);
+  border-radius:16px 16px 0 0;
+}
+.bottomnav-inner{
+  display:flex;justify-content:space-around;align-items:center;
+  padding:8px 16px calc(12px + env(safe-area-inset-bottom,0px));
+  max-width:600px;margin:0 auto;
+}
+.navtab{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;padding:6px 20px;border-radius:var(--r-full);
+  color:var(--on-surface-variant);transition:all .15s;
+}
+.navtab:active{transform:scale(.92);}
+.navtab.active{background:var(--secondary-container);color:var(--on-secondary-container);}
+.navtab span.label{font-size:12px;font-weight:700;letter-spacing:.05em;}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:var(--r-lg);padding:14px 24px;
+  font-weight:700;font-size:14px;letter-spacing:.02em;
+  transition:opacity .15s, transform .1s, box-shadow .15s;
+  white-space:nowrap;
+}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent-energy);color:#fff;box-shadow:var(--shadow-active);}
+.btn-primary:hover{background:var(--secondary-container);}
+.btn-outline{background:var(--surface-paper);border:1px solid var(--outline-variant);color:var(--primary);box-shadow:var(--shadow);}
+.btn-outline:hover{background:var(--surface-container-low);}
+.btn-soft{background:var(--surface-container-high);color:var(--on-surface);}
+.btn-success{background:var(--tertiary-container);color:var(--on-tertiary-container);}
+.btn-block{width:100%;}
+.btn-lg{padding:18px 32px;font-size:18px;border-radius:var(--r-full);}
+.btn-img-only{background:none;box-shadow:none;padding:0;border:none;border-radius:14px;overflow:hidden;}
+.btn-img-only img{width:min(160px, 33vw);height:auto;display:block;margin:0 auto;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+
+.fab{
+  position:fixed;bottom:104px;right:24px;z-index:45;
+  width:64px;height:64px;border-radius:50%;
+  background:var(--secondary-container);color:var(--on-secondary-container);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-active);transition:all .15s;
+}
+.fab:hover{background:var(--secondary);color:#fff;}
+.fab:active{transform:scale(.9);}
+
+/* ---------- Cards / Stats ---------- */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);}
+.stat-card{
+  background:var(--surface-paper);border-radius:var(--r-lg);padding:10px 14px;
+  box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;
+}
+.stat-icon{
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--primary-container);color:var(--on-primary-container);flex-shrink:0;
+}
+.stat-icon svg{width:18px;height:18px;}
+.stat-icon.alt{background:var(--secondary-container);color:var(--on-secondary-container);}
+.stat-text{display:flex;flex-direction:column;min-width:0;}
+.stat-label{font-size:11.5px;color:var(--on-surface-variant);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.stat-value{font-size:19px;font-weight:700;line-height:1.2;}
+
+.search-row{position:relative;margin-bottom:var(--md);}
+.search-row svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--outline);pointer-events:none;}
+.search-row input{width:100%;height:52px;padding:0 16px 0 46px;border-radius:var(--r-lg);border:1px solid var(--outline-variant);background:var(--surface-container-low);font-size:15px;}
+.search-row input:focus{outline:2px solid var(--primary);outline-offset:1px;}
+.search-row.compact{width:220px;max-width:45vw;margin-bottom:0;}
+.search-row.compact svg{left:12px;width:16px;height:16px;}
+.search-row.compact input{height:40px;padding:0 12px 0 34px;font-size:13px;}
+
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:var(--md);}
+.section-head-title{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.section-head-title h2{margin:0;}
+.section-head h2{font-size:24px;font-weight:700;margin:0;}
+.head-actions{display:flex;gap:8px;}
+.chip-btn{
+  width:36px;height:36px;border-radius:var(--r);background:var(--surface-container-low);
+  color:var(--on-surface);display:flex;align-items:center;justify-content:center;transition:background .15s;
+}
+.chip-btn:hover{background:var(--surface-container);}
+
+.class-grid{display:grid;grid-template-columns:1fr;gap:var(--md);}
+@media(min-width:640px){.class-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:960px){.class-grid{grid-template-columns:1fr 1fr 1fr;}}
+
+.class-card{
+  display:block;background:var(--surface-paper);border-radius:var(--r-xl);padding:var(--md);
+  box-shadow:var(--shadow);border:2px solid transparent;transition:box-shadow .15s, border-color .15s;
+  cursor:pointer;
+}
+.class-card:hover{box-shadow:var(--shadow-active);border-color:var(--tertiary-fixed-dim);}
+.class-card-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.class-card h3{font-size:24px;font-weight:700;margin:0;}
+.class-card .sub{font-size:16px;color:var(--on-surface-variant);margin-top:4px;}
+.badge{
+  padding:4px 12px;border-radius:var(--r-full);font-size:12px;font-weight:700;
+  letter-spacing:.05em;white-space:nowrap;
+}
+.badge-primary{background:var(--primary-container);color:#fff;}
+.badge-secondary{background:var(--secondary-container);color:var(--on-secondary-container);}
+.badge-tertiary{background:var(--tertiary-container);color:#fff;}
+.class-card-bottom{
+  margin-top:var(--md);display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--outline-variant);padding-top:var(--sm);
+}
+.avatar-stack{display:flex;}
+.avatar-stack > *{margin-left:-8px;}
+.avatar-stack > *:first-child{margin-left:0;}
+.mini-avatar{
+  width:32px;height:32px;border-radius:50%;border:2px solid var(--surface-paper);
+  background:var(--surface-container-low);display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--on-surface-variant);object-fit:cover;overflow:hidden;
+}
+.empty-state{
+  text-align:center;padding:64px 24px;color:var(--on-surface-variant);
+}
+.empty-state .icon-wrap{
+  width:72px;height:72px;border-radius:50%;background:var(--surface-container-low);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--primary);
+}
+
+/* ---------- Student list ---------- */
+.list-header{
+  display:flex;flex-direction:column;gap:var(--sm);margin-bottom:var(--lg);
+}
+@media(min-width:640px){.list-header{flex-direction:row;justify-content:space-between;align-items:center;}}
+.list-header h2{font-size:32px;margin:0 0 4px;}
+.list-header .sub{display:flex;align-items:center;gap:6px;color:var(--on-surface-variant);font-size:16px;}
+.list-actions{display:flex;gap:12px;flex-wrap:wrap;}
+
+.student-avatar{
+  width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;
+  background:var(--surface-container-high);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;
+}
+.absent-toggle{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;border:1.5px solid var(--outline-variant);
+  display:flex;align-items:center;justify-content:center;color:var(--outline);
+}
+.absent-toggle.on{background:var(--error-container);color:var(--on-error-container);border-color:transparent;}
+.absent-toggle.small{width:24px;height:24px;}
+.absent-toggle.small svg{width:14px;height:14px;}
+
+/* ---------- Roster (danh sách học sinh) ---------- */
+.roster-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+@media(min-width:640px){.roster-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:960px){.roster-grid{grid-template-columns:1fr 1fr 1fr;}}
+@media(min-width:1280px){.roster-grid{grid-template-columns:1fr 1fr 1fr 1fr;}}
+
+.roster-row{
+  position:relative;display:flex;align-items:center;gap:10px;
+  background:var(--surface-paper);border-radius:var(--r-lg);padding:10px 12px;
+  box-shadow:var(--shadow);border:2px solid transparent;transition:all .15s;cursor:pointer;
+}
+.roster-row:hover{box-shadow:var(--shadow-active);}
+.roster-row.called .roster-row-main h4{color:var(--tertiary);}
+.roster-row.absent{opacity:.5;}
+.roster-row .student-avatar{width:40px;height:40px;font-size:14px;}
+.roster-row-main{flex:1;min-width:0;}
+.roster-row-main h4{font-size:14px;font-weight:600;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.roster-row-status{font-size:11.5px;color:var(--on-surface-variant);display:flex;align-items:center;gap:4px;margin-top:2px;}
+.roster-row-status svg{width:13px;height:13px;}
+.roster-row-status.just-called{color:var(--tertiary);font-weight:600;}
+.history-list.mini, .notes-list.mini{max-height:280px;}
+.btn-sm{padding:8px 14px;font-size:12.5px;}
+
+/* ---------- Effect switcher tabs (màn Quay số) ---------- */
+/* Hàng trên cùng: text sĩ số bên trái + thanh tab bên phải, CÙNG một dòng,
+   nằm sát ngay dưới tên lớp — đẩy toàn bộ lên cao gần header hơn. */
+.spin-toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-shrink:0;}
+.hero-card.compact .spin-toprow{margin:-.3rem 0 .4rem;}
+.effect-switcher{
+  display:flex;flex-direction:row;gap:6px;background:var(--surface-container-low);
+  padding:5px;border-radius:var(--r-xl);box-shadow:var(--shadow);
+  overflow-x:auto;flex-shrink:0;
+}
+.effect-tab{
+  display:flex;align-items:center;justify-content:center;padding:3px;border-radius:var(--r-lg);
+  color:var(--on-surface-variant);width:66px;height:66px;flex-shrink:0;transition:all .15s;
+}
+.effect-tab:hover{background:var(--surface-container);}
+.effect-tab.active{background:var(--surface-paper);color:var(--primary);box-shadow:var(--shadow);}
+/* object-fit:cover (thay vì contain) để logo luôn phủ khít vuông vắn trong ô,
+   không còn viền/khoảng trống dù ảnh nguồn lệch tỉ lệ. */
+.effect-tab .effect-icon-img{width:60px;height:60px;object-fit:cover;border-radius:13px;}
+.effect-tab svg{width:36px;height:36px;}
+
+.spin-stage{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 12px 12px;gap:clamp(6px, 1.2vh, var(--margin));overflow:hidden;}
+/* Text sĩ số lệch trái để thẳng hàng với chữ "Lớp ..." (button back rộng 40px + gap 10px). */
+.eligible-note{color:var(--on-background);font-size:17px;font-weight:800;text-align:left;flex-shrink:0;margin-left:50px;}
+/* Đổi màu số liệu theo đúng tông màu của game đang chọn — dễ nhìn hơn và
+   nhất quán với màu chủ đạo của từng trò chơi. */
+.spin-toprow.effect-wheel .eligible-note, .spin-toprow.g-wheel .eligible-note{color:var(--game-wheel-dark);}
+.spin-toprow.effect-cards .eligible-note, .spin-toprow.g-cards .eligible-note{color:var(--game-cards-dark);}
+.spin-toprow.effect-slot .eligible-note, .spin-toprow.g-slot .eligible-note{color:var(--game-slot-dark);}
+.spin-toprow.effect-shuffle .eligible-note, .spin-toprow.g-shuffle .eligible-note{color:var(--game-shuffle-dark);}
+
+/* Khối chứa giao diện từng game (vòng quay/thẻ bài/slot/xáo ảnh) — luôn chiếm hết
+   phần không gian còn lại, đảm bảo thanh tab + nút quay giữ nguyên vị trí dù
+   đổi qua lại giữa các kiểu game. */
+.game-stage-flex{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+
+/* ---- Wheel ---- */
+/* wheel-wrap co theo chiều cao THẬT còn lại của game-stage-flex (height:min(px,100%)
+   — phần trăm chuẩn CSS, không dùng container-query vì cqw/cqh từng gây lỗi
+   phóng to sai kích thước trên một số máy) rồi giữ vuông bằng aspect-ratio;
+   max-width:100% chặn tràn ngang trong trường hợp hiếm khi rộng bị hẹp hơn cao. */
+.wheel-wrap{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  height:min(2240px, 100%);aspect-ratio:1/1;max-width:100%;
+}
+.wheel-frame-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:2;}
+.wheel-disc-holder{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:76%;height:76%;z-index:1;}
+.wheel{
+  position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;
+  box-shadow:var(--shadow-spin);
+  transition:transform 3.2s cubic-bezier(.2,.65,.2,1);
+}
+.wheel-label{position:absolute;top:50%;left:50%;width:50%;height:0;transform-origin:0 0;display:flex;align-items:center;pointer-events:none;}
+.wheel-label span{
+  display:inline-block;margin-left:38%;font-size:clamp(9px,1.8vh,13px);font-weight:800;color:#fff;
+  white-space:nowrap;max-width:50%;overflow:hidden;text-overflow:ellipsis;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+}
+/* Lát nằm nửa trái vòng quay: lật chữ 180° tại chỗ để không bị đọc ngược đầu. */
+.wheel-label.flip span{transform:rotate(180deg);}
+.wheel-center-img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;width:26%;pointer-events:none;}
+.wheel-center-img img{width:100%;height:auto;display:block;}
+.wheel-marker{position:absolute;top:-4%;left:50%;transform:translateX(-50%);z-index:5;width:20%;pointer-events:none;}
+.wheel-marker img{width:100%;height:auto;display:block;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));transform-origin:50% 20%;}
+.wheel-marker.flash img{animation:wheel-marker-flash .35s ease-in-out 2;}
+@keyframes wheel-marker-flash{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));}
+  50%{transform:scale(1.3);filter:drop-shadow(0 0 16px rgba(255,215,0,.95));}
+}
+
+/* ---- Cards draw ---- */
+/* Hiệu ứng hồi hộp gồm 3 giai đoạn nối tiếp (điều phối trong spinCardsAction):
+   1) .shuffling — cả bộ bài xóc qua lại liên tục (card-shuffle loop).
+   2) .tension trên lá trên cùng — rung/nhấp nháy sáng như "nín thở" trước khi rút.
+   3) .drawing (đã có sẵn) — lá bài bay lên biến mất, sau đó mới hiện kết quả. */
+.cards-stage{position:relative;width:min(300px,42vh,85vw);height:min(320px,46vh);display:flex;align-items:center;justify-content:center;}
+.cards-table-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:170%;max-width:none;z-index:0;pointer-events:none;opacity:.9;}
+.cards-fan-img{
+  position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);width:82%;height:auto;z-index:1;pointer-events:none;
+  filter:drop-shadow(0 14px 24px rgba(0,40,20,.3));
+}
+.playing-card{
+  position:absolute;width:46%;z-index:2;
+  transform:translate(var(--bx),var(--by)) rotate(var(--br));
+  transition:transform .6s cubic-bezier(.2,.7,.3,1), opacity .5s;
+}
+.playing-card img{width:100%;height:auto;display:block;filter:drop-shadow(0 12px 22px rgba(0,40,20,.4));}
+.playing-card.drawing{transform:translateY(-360px) rotate(-8deg) scale(.9);opacity:0;}
+
+.cards-stage.shuffling .cards-fan-img{animation:cards-fan-wobble .32s ease-in-out infinite;}
+@keyframes cards-fan-wobble{
+  0%,100%{transform:translate(-50%,-50%) rotate(0deg);}
+  50%{transform:translate(-50%,-50%) rotate(-3deg);}
+}
+.cards-stage.shuffling .playing-card{
+  animation:card-shuffle .32s ease-in-out infinite;
+  animation-delay:var(--delay);
+}
+@keyframes card-shuffle{
+  0%,100%{transform:translate(var(--bx),var(--by)) rotate(var(--br));}
+  50%{transform:translate(calc(var(--bx) + var(--wx)), calc(var(--by) - 9px)) rotate(calc(var(--br) + var(--wr)));}
+}
+.playing-card.tension{animation:card-tension .28s ease-in-out 3;}
+.playing-card.tension img{filter:drop-shadow(0 0 18px rgba(255,193,7,.85)) drop-shadow(0 12px 22px rgba(0,40,20,.4));}
+@keyframes card-tension{
+  0%,100%{transform:translate(var(--bx),var(--by)) rotate(var(--br)) scale(1);}
+  50%{transform:translate(var(--bx),var(--by)) rotate(var(--br)) scale(1.08);}
+}
+
+/* ---- Slot machine ----
+   slot-frame.png là 1 khối đồ hoạ hoàn chỉnh (khung + 3 ô kính trắng có sẵn),
+   .reel được đặt CHỒNG đúng lên 3 ô kính đó bằng toạ độ % đo tay từ ảnh gốc.
+   QUAN TRỌNG: dùng aspect-ratio (không tự tính width=height*2 bằng calc như
+   trước) để khi bề ngang bị max-width chặn hẹp lại, trình duyệt tự co lại
+   ĐÚNG TỈ LỆ cả 2 chiều — bản cũ set width/height riêng lẻ nên khi bị chặn
+   ngang, khung bị bóp méo lệch tỉ lệ khiến ảnh khung co theo object-fit:contain
+   nhưng toạ độ % của .reel (đo theo khung vuông vắn ban đầu) bị lệch khỏi vị
+   trí thật của ảnh, làm chữ hiện lệch lên trên. */
+.slot-panel{position:relative;height:min(280px, 100%);aspect-ratio:2/1;max-width:100%;}
+/* Ảnh khung phải nằm DƯỚI text tên (z-index thấp hơn) — khung có sẵn 3 ô
+   kính trắng ĐỤC màu, nếu đặt trên sẽ đè mất chữ tên học sinh bên dưới. */
+.slot-frame-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:1;}
+.slot-reels{position:absolute;inset:0;z-index:2;}
+.reel{position:absolute;top:40%;height:35%;overflow:hidden;}
+.reel:nth-child(1){left:21%;width:16.5%;}
+.reel:nth-child(2){left:41%;width:16.5%;}
+.reel:nth-child(3){left:61%;width:16.5%;}
+/* reel-strip neo tuyệt đối ở top:0/height:100% (theo % thật của .reel, không
+   còn phụ thuộc biến --slot-h nữa) để khi JS thêm dòng tên kế tiếp bên dưới,
+   dòng đang hiện vẫn khớp khít trong khung rồi mới trượt lên đúng 1 hàng —
+   tạo hiệu ứng "tên chạy qua" mượt, xem hàm slideReelTo() trong spinSlotAction. */
+.reel .reel-strip{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;
+}
+.reel .reel-strip span{
+  width:100%;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(13px,3.2vw,26px);font-weight:800;color:#3b2a12;
+}
+
+/* ---- Shuffle photos ----
+   grid-template-columns được JS (layoutShuffleGrid trong app.js) tính lại
+   mỗi lần render/spin — chọn số cột + kích cỡ ô lớn nhất vừa khít cả chiều
+   ngang lẫn dọc của khung, đảm bảo KHÔNG bao giờ cần thanh cuộn dù lớp đông.
+   padding 20px chừa chỗ cho quầng sáng (.shuffle-cell-glow) của các ô ở
+   hàng/cột ngoài cùng không bị cắt mất — JS trừ đúng khoảng padding này khi
+   tính kích cỡ ô nên vẫn đảm bảo vừa khít. */
+.shuffle-stage{
+  display:grid;gap:8px;width:100%;height:100%;padding:20px;
+  overflow:visible;place-content:center;box-sizing:border-box;
+}
+.shuffle-cell{
+  position:relative;aspect-ratio:1;border-radius:var(--r-lg);background:var(--surface-container-low);
+  display:flex;align-items:center;justify-content:center;overflow:visible;
+  border:3px solid transparent;transition:border-color .1s, transform .1s;
+  font-weight:700;color:var(--primary);font-size:clamp(9px,2.4vw,15px);
+}
+.shuffle-cell.highlight{border-color:var(--accent-energy);transform:scale(1.08);z-index:1;}
+.shuffle-cell > img:not(.shuffle-cell-glow){width:100%;height:100%;object-fit:cover;border-radius:calc(var(--r-lg) - 3px);position:relative;z-index:1;}
+.shuffle-cell-glow{position:absolute;inset:-18%;width:136%;height:136%;max-width:none;opacity:0;pointer-events:none;transition:opacity .12s;z-index:0;}
+.shuffle-cell.highlight .shuffle-cell-glow{opacity:1;}
+
+/* ---------- Game picker (chọn kiểu quay số) ---------- */
+.game-pick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+@media(max-width:720px){.game-pick-grid{grid-template-columns:1fr 1fr;}}
+.game-pick-card{border-radius:18px;padding:22px 16px;text-align:center;border:1px solid transparent;transition:transform .15s;}
+.game-pick-card:hover{transform:translateY(-3px);}
+.game-pick-card .orb{width:96px;height:96px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;}
+.game-pick-card .orb.has-logo{background:none;}
+.game-pick-card .orb img{width:100%;height:100%;object-fit:contain;}
+.game-pick-card h3{margin:0 0 6px;font-size:16px;color:var(--on-background);}
+.game-pick-card p{margin:0 0 16px;font-size:12.5px;color:var(--on-surface-variant);line-height:1.5;}
+.game-pick-card.c-wheel{background:#F4FAFB;border-color:#D6EEEF;}
+.game-pick-card.c-wheel .orb{background:linear-gradient(135deg,var(--game-wheel),var(--game-wheel-dark));}
+.game-pick-card.c-wheel button{background:var(--game-wheel);}
+.game-pick-card.c-cards{background:#F4F8FF;border-color:#D9E6FA;}
+.game-pick-card.c-cards .orb{background:linear-gradient(135deg,var(--game-cards),var(--game-cards-dark));}
+.game-pick-card.c-cards button{background:var(--game-cards);}
+.game-pick-card.c-slot{background:#FFF7EE;border-color:#FBE3C6;}
+.game-pick-card.c-slot .orb{background:linear-gradient(135deg,var(--game-slot),var(--game-slot-dark));}
+.game-pick-card.c-slot button{background:var(--game-slot);}
+.game-pick-card.c-shuffle{background:#F8F5FC;border-color:#E5D9F5;}
+.game-pick-card.c-shuffle .orb{background:linear-gradient(135deg,var(--game-shuffle),var(--game-shuffle-dark));}
+.game-pick-card.c-shuffle button{background:var(--game-shuffle);}
+.game-pick-card button{width:100%;padding:10px;font-size:13px;color:#fff;border:none;border-radius:var(--r-lg);font-weight:700;}
+.game-pick-card button.btn-img{background:none !important;padding:0;border:none;border-radius:14px;overflow:hidden;}
+.game-pick-card button.btn-img img{width:100%;height:auto;display:block;}
+
+/* Màu game áp cho màn hình quay + kết quả, đổi theo hiệu ứng đang chọn */
+.spin-stage.effect-wheel .spin-btn, .spin-stage.effect-wheel .effect-tab.active{background:var(--game-wheel);color:#fff;}
+.spin-stage.effect-cards .spin-btn, .spin-stage.effect-cards .effect-tab.active{background:var(--game-cards);color:#fff;}
+.spin-stage.effect-slot .spin-btn, .spin-stage.effect-slot .effect-tab.active{background:var(--game-slot);color:#fff;}
+.spin-stage.effect-shuffle .spin-btn, .spin-stage.effect-shuffle .effect-tab.active{background:var(--game-shuffle);color:#fff;}
+.spin-stage.g-wheel .result-badge{background:#e6f5f4;color:var(--game-wheel-dark);} .spin-stage.g-wheel .result-name{color:var(--game-wheel-dark);}
+.spin-stage.g-cards .result-badge{background:#e9f0fd;color:var(--game-cards-dark);}
+/* Thẻ rút được (card_one_back.png) nền xanh lá — chữ màu XANH DƯƠNG, kèm viền
+   sáng mỏng để vẫn nổi rõ trên cả vùng sáng lẫn vùng tối của thẻ. */
+.spin-stage.g-cards .result-frame-wrap .result-name{color:#155DFC;text-shadow:0 1px 1px rgba(255,255,255,.6), 0 0 6px rgba(255,255,255,.4);}
+.spin-stage.g-cards .result-frame-wrap .result-stt{background:#155DFC;color:#fff;}
+.spin-stage.g-slot .result-badge{background:#fef1e2;color:var(--game-slot-dark);} .spin-stage.g-slot .result-name{color:var(--game-slot-dark);}
+.spin-stage.g-shuffle .result-badge{background:#f3ecfa;color:var(--game-shuffle-dark);} .spin-stage.g-shuffle .result-name{color:var(--game-shuffle-dark);}
+
+.spin-btn{
+  background:var(--secondary-container);color:var(--on-secondary-container);flex-shrink:0;
+  padding:clamp(12px,2vh,18px) 40px;border-radius:var(--r-full);box-shadow:var(--shadow-spin);
+  display:flex;align-items:center;gap:10px;font-size:clamp(16px,3vh,22px);font-weight:700;transition:all .15s;
+}
+.spin-btn:hover{opacity:.92;}
+.spin-btn:active{transform:scale(.96);}
+.spin-btn:disabled{opacity:.5;}
+.spin-btn.spin-btn-img{background:none !important;box-shadow:none;padding:0;}
+/* Ràng buộc theo CHIỀU CAO (không phải chiều rộng) — mỗi ảnh nút của từng
+   game có tỉ lệ khung khác nhau (nút slot vuông hơn nút wheel/cards/shuffle),
+   cố định chiều rộng sẽ làm nút slot trông to/dày hơn hẳn dù cùng 1 rule. */
+.spin-btn.spin-btn-img img{height:min(64px, 13vw);width:auto;max-width:min(220px, 45vw);display:block;margin:0 auto;}
+
+/* ---------- Import success (dùng chung result-avatar-wrap/result-name) ---------- */
+.result-card{
+  position:relative;overflow:hidden;
+  background:var(--surface-paper);border-radius:var(--r-xl);box-shadow:var(--shadow-active);
+  padding:clamp(16px,3vh,var(--margin)) var(--md);max-width:420px;width:100%;text-align:center;margin:0 auto;
+  max-height:100%;
+}
+.result-sub{color:var(--on-surface-variant);font-size:14px;margin-bottom:clamp(12px,2.5vh,32px);}
+.result-actions{display:flex;flex-direction:column;gap:10px;}
+
+/* ---------- Result screen (màn kết quả quay số) ----------
+   Bố cục giống hệt màn Quay số: game-stage-flex (khung + tên) rồi đến nút
+   Quay tiếp đứng riêng bên dưới (spin-btn) và Ghi chú bên dưới nút đó —
+   không còn bọc trong 1 khối card riêng. */
+.result-frame-area{
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(8px,1.6vh,16px);width:100%;height:100%;text-align:center;
+}
+.result-badge{
+  display:inline-flex;align-items:center;gap:8px;background:#fff3e0;color:var(--accent-energy);
+  padding:5px 12px;border-radius:var(--r-full);font-size:11px;font-weight:800;letter-spacing:.08em;
+  flex-shrink:0;
+}
+/* Khối RIÊNG bao đúng phần "từ dưới result-badge đến hết trang trắng"
+   (game-stage-flex + result-actions-row) — confetti neo theo khối này
+   (position:relative) nên không tràn lên đè chữ "Chúc mừng..." phía trên. */
+.result-body{
+  position:relative;flex:1;min-height:0;width:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:clamp(6px, 1.2vh, var(--margin));
+}
+.result-confetti{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  z-index:0;opacity:.7;pointer-events:none;
+}
+/* Khung kết quả riêng theo từng game — tái dùng đúng asset khung của màn
+   chơi tương ứng (vòng tròn/lá bài/máy slot/khung neon). Không còn vòng tròn
+   ảnh đại diện — TÊN học sinh nằm trực tiếp giữa khung. z-index của tên (3)
+   luôn CAO HƠN ảnh khung (2) vì card_one_back.png là 1 lá bài vẽ đặc (không
+   rỗng giữa như khung tròn/khung slot/khung neon) — nếu tên thấp hơn sẽ bị
+   khung đè mất chữ. */
+.result-frame-wrap{position:relative;z-index:1;}
+.result-frame-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:2;}
+.result-frame-wrap .result-name{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;
+  flex-direction:column;gap:2px;text-align:center;width:72%;font-size:clamp(12px,2.6vh,19px);
+}
+
+.result-frame-wheel{width:min(260px,34vh);height:min(260px,34vh);}
+.result-frame-cards{width:min(200px,30vh);height:min(280px,42vh);}
+.result-frame-cards .result-name{top:46%;width:60%;}
+.result-frame-slot{width:min(260px,34vh);height:min(260px,34vh);}
+.result-frame-shuffle{width:min(240px,32vh);height:min(197px,26vh);}
+.result-avatar-wrap{position:relative;z-index:1;width:min(120px,20vh);height:min(120px,20vh);margin:0 auto;}
+.result-avatar{
+  width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:var(--shadow);
+  background:var(--primary-fixed);color:var(--primary);display:flex;align-items:center;justify-content:center;
+  font-size:clamp(22px,5.5vh,40px);font-weight:800;
+}
+.result-ribbon{
+  position:absolute;bottom:-4px;right:-8px;width:min(42px,7.5vh);height:auto;object-fit:contain;
+}
+.result-name{
+  position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:clamp(18px,3.4vh,28px);font-weight:800;color:var(--primary);line-height:1.15;margin:0;word-break:break-word;
+}
+.result-stt{
+  display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+  min-width:1.5em;height:1.5em;padding:0 .25em;border-radius:999px;
+  background:var(--primary-container);color:var(--on-primary-container);
+  font-size:.62em;font-weight:800;
+}
+/* Quay tiếp + icon Ghi chú nằm chung 1 hàng, icon sát ngay cạnh phải nút. */
+/* Lưới 3 cột 1fr/auto/1fr: nút Quay tiếp luôn nằm đúng giữa hàng (giữa khớp
+   với khung phía trên) bất kể icon Ghi chú có mặt hay không — icon nằm ở
+   cột phải, không kéo lệch tâm nút như flex justify-content:center trước đó. */
+.result-actions-row{
+  position:relative;z-index:1;width:100%;flex-shrink:0;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;
+}
+.result-actions-row .spin-btn{grid-column:2;justify-self:center;}
+.result-actions-row .result-note-icon{grid-column:3;justify-self:start;}
+.result-note-icon{width:48px;height:48px;background:var(--surface-container-low);box-shadow:var(--shadow);flex-shrink:0;}
+.result-note-icon svg{width:22px;height:22px;}
+
+/* Hiệu ứng bung confetti tràn toàn màn hình lúc vừa ra kết quả — position:fixed
+   nên phủ ra ngoài cả khung hero-card, không bị giới hạn trong result-card. */
+.result-fx{position:fixed;inset:0;z-index:50;overflow:hidden;pointer-events:none;}
+.result-fx-flash{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 42%, rgba(255,255,255,.95), rgba(255,255,255,0) 62%);
+  animation:result-fx-flash .7s ease-out both;
+}
+.result-fx-piece{
+  position:absolute;top:50%;left:50%;width:min(340px, 55vmax);max-width:none;
+  transform:translate(-50%,-50%) scale(.2) rotate(0deg);opacity:0;
+  animation:result-fx-burst 1.3s cubic-bezier(.15,.75,.25,1) both;
+  animation-delay:var(--delay);
+}
+@keyframes result-fx-flash{
+  0%{opacity:0;} 15%{opacity:1;} 100%{opacity:0;}
+}
+@keyframes result-fx-burst{
+  0%{transform:translate(-50%,-50%) translate(0,0) scale(.2) rotate(0deg);opacity:0;}
+  12%{opacity:1;}
+  100%{transform:translate(-50%,-50%) translate(var(--dx),var(--dy)) scale(var(--scale)) rotate(var(--rot));opacity:0;}
+}
+
+/* ---------- Màn hình kích hoạt (license) ---------- */
+.activation-card{max-width:420px;margin:auto;text-align:center;justify-content:center;}
+.activation-logo{margin-bottom:18px;}
+.activation-logo img{height:48px;width:auto;}
+.activation-card h2{margin:0 0 8px;font-size:22px;color:var(--on-background);}
+.activation-sub{margin:0 0 22px;font-size:14px;color:var(--on-surface-variant);}
+.activation-card .field{text-align:left;margin-bottom:16px;}
+.activation-card .field input{text-align:center;font-weight:700;letter-spacing:.03em;text-transform:uppercase;}
+.activation-error{margin:0 0 14px;font-size:13px;color:var(--error);font-weight:600;}
+.activation-footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--outline-variant);font-size:12.5px;color:var(--on-surface-variant);}
+.activation-footer p{margin:0 0 8px;}
+.activation-footer code{background:var(--surface-container-low);padding:2px 6px;border-radius:6px;font-size:11.5px;}
+.activation-footer a{display:inline-flex;align-items:center;gap:4px;color:var(--primary);font-weight:600;}
+.activation-footer a svg{width:14px;height:14px;}
+
+/* ---------- Hồ sơ giáo viên (trang riêng) ---------- */
+.profile-edit-card{max-width:420px;margin:0 auto;}
+.profile-edit-card .field{text-align:left;}
+/* Dạng xem hồ sơ đã lưu (không phải form nhập) */
+.profile-view-card{text-align:center;}
+.profile-view-avatar{
+  width:104px;height:104px;border-radius:50%;margin:0 auto 16px;overflow:hidden;
+  background:var(--surface-container-low);color:var(--outline);
+  display:flex;align-items:center;justify-content:center;
+}
+.profile-view-avatar img{width:100%;height:100%;object-fit:cover;}
+/* Khối thông tin căn trái, độ rộng cố định + margin:0 auto để 2 dòng nhãn
+   "Giáo viên:"/"Môn dạy:" luôn thẳng lề trái với nhau (thay vì lệch theo
+   text-align:center của card cha). */
+.profile-view-info{max-width:280px;margin:0 auto;text-align:left;}
+.profile-view-label{margin:0 0 8px;font-size:14px;font-weight:700;color:var(--on-surface-variant);}
+.profile-view-name{font-size:20px;font-weight:800;color:var(--on-background);}
+.profile-view-subjects{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;margin-bottom:8px;}
+.profile-view-empty{color:var(--on-surface-variant);font-size:13px;}
+
+/* ---------- Hỗ trợ ---------- */
+.support-card{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+.support-intro{margin:0 0 18px;font-size:15px;color:var(--on-surface-variant);}
+.support-row{
+  display:flex;align-items:center;gap:14px;background:var(--surface-paper);border-radius:var(--r-xl);
+  box-shadow:var(--shadow);padding:16px 18px;transition:box-shadow .15s;
+}
+a.support-row:hover{box-shadow:var(--shadow-active);}
+.support-icon{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;background:var(--primary-container);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.support-icon svg{width:20px;height:20px;}
+.support-label{display:block;font-size:12px;color:var(--on-surface-variant);font-weight:600;}
+.support-value{display:block;font-size:16px;font-weight:700;color:var(--on-background);}
+
+/* ---------- Settings ---------- */
+.settings-card{
+  background:var(--surface-paper);border-radius:var(--r-xl);box-shadow:var(--shadow);
+  overflow:hidden;margin-bottom:var(--margin);
+}
+.settings-row{
+  padding:var(--md);border-bottom:1px solid var(--outline-variant);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.settings-row:last-child{border-bottom:none;}
+.settings-row h4{margin:0 0 2px;font-size:18px;}
+.settings-row p{margin:0;font-size:14px;color:var(--on-surface-variant);}
+.settings-select-trigger{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-shrink:0;
+  height:52px;padding:0 14px;border-radius:var(--r-lg);border:1px solid var(--outline-variant);
+  background:var(--surface-container);font-size:15px;font-weight:600;color:var(--on-background);
+  min-width:160px;transition:background .15s;
+}
+.settings-select-trigger:hover{background:var(--surface-container-high);}
+.settings-select-trigger span{display:flex;align-items:center;gap:8px;}
+.settings-select-trigger svg{width:16px;height:16px;flex-shrink:0;}
+.settings-select-trigger .effect-icon-img{width:18px;height:18px;object-fit:contain;flex-shrink:0;}
+
+/* Trang Cài đặt gọn: mọi thứ vừa trong 1 màn hình, không cần cuộn */
+.hero-card.compact .settings-card{margin-bottom:14px;}
+/* Không còn tiêu đề "Cài đặt" ngay dưới header nữa nên khối đầu tiên dính
+   sát header — thêm khoảng cách để giống các trang khác. */
+.hero-card.compact .settings-card:first-of-type{margin-top:20px;}
+.hero-card.compact .settings-row{padding:12px 18px;}
+.hero-card.compact .settings-row h4{font-size:15px;}
+.hero-card.compact .settings-row p{font-size:12px;}
+.hero-card.compact .settings-info{padding:10px;font-size:12px;}
+.switch{position:relative;width:44px;height:24px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;position:absolute;}
+.switch .track{
+  position:absolute;inset:0;background:var(--outline-variant);border-radius:999px;transition:background .2s;
+}
+.switch .thumb{
+  position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;
+  transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3);
+}
+.switch input:checked + .track{background:var(--primary);}
+.switch input:checked + .track + .thumb{transform:translateX(20px);}
+.settings-info{text-align:center;padding:var(--md);color:var(--on-surface-variant);font-size:14px;}
+
+/* ---------- Modals ---------- */
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(11,28,48,.45);backdrop-filter:blur(2px);
+  display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;
+}
+.modal{
+  background:var(--surface-paper);border-radius:var(--r-xl);box-shadow:var(--shadow-active);
+  width:100%;max-width:440px;max-height:88vh;overflow-y:auto;padding:var(--md);
+}
+.modal h2{font-size:22px;margin:0 0 20px;color:var(--primary);}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:13px;font-weight:700;color:var(--on-surface-variant);margin-bottom:6px;letter-spacing:.02em;}
+.field input[type=text], .field input[type=number], .field select{
+  width:100%;height:52px;padding:0 14px;border-radius:var(--r-lg);border:1px solid var(--outline-variant);
+  background:var(--surface-container-low);font-size:16px;
+}
+.field input:focus, .field select:focus{outline:2px solid var(--primary);outline-offset:1px;}
+.field .hint{font-size:12px;color:var(--outline);margin-top:6px;}
+.photo-pick{
+  display:flex;align-items:center;gap:14px;
+}
+.photo-pick .preview{
+  width:64px;height:64px;border-radius:50%;background:var(--surface-container-high);
+  display:flex;align-items:center;justify-content:center;color:var(--primary);overflow:hidden;flex-shrink:0;
+}
+.photo-pick .preview img{width:100%;height:100%;object-fit:cover;}
+/* ---------- Student detail (trang chi tiết học sinh: thống kê, lịch sử, ghi chú) ---------- */
+.student-detail-head{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  background:var(--surface-container-low);border-radius:var(--r-xl);padding:20px;margin-bottom:var(--md);
+}
+.student-detail-head .student-avatar{width:84px;height:84px;font-size:26px;}
+.student-detail-head .who{flex:1;min-width:160px;}
+.student-detail-head .who h1{margin:0 0 4px;font-size:22px;color:var(--on-background);}
+.student-detail-head .who p{margin:0;font-size:14px;color:var(--on-surface-variant);}
+
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--md);align-items:start;}
+@media(max-width:720px){.detail-grid{grid-template-columns:1fr;}}
+.detail-col{min-width:0;display:flex;flex-direction:column;gap:var(--md);}
+
+/* ---- "CHỈ SỐ PHÁT BIỂU": tổng số lần gọi + lần gần nhất ---- */
+.brief-card{background:var(--surface-paper);border-radius:var(--r-xl);box-shadow:var(--shadow);padding:18px 20px;}
+.brief-title{margin:0 0 14px;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--on-surface-variant);}
+.brief-total{display:flex;align-items:center;gap:14px;padding-bottom:16px;margin-bottom:12px;border-bottom:1px solid var(--outline-variant);}
+.brief-total-icon{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;background:var(--primary-container);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.brief-total-icon svg{width:22px;height:22px;}
+.brief-total-label{margin:0;font-size:12.5px;color:var(--on-surface-variant);}
+.brief-total-value{margin:2px 0 0;font-size:26px;font-weight:800;color:var(--on-background);}
+.brief-total-value span{font-size:13px;font-weight:600;color:var(--on-surface-variant);}
+.brief-divider-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;}
+.brief-divider-row span{color:var(--on-surface-variant);}
+.brief-divider-row strong{color:var(--on-background);}
+
+/* ---- Lịch sử gọi bài ---- */
+.history-card{background:var(--surface-paper);border-radius:var(--r-xl);box-shadow:var(--shadow);padding:18px 20px;flex:1;min-height:0;}
+.history-card-head{margin-bottom:12px;}
+.history-card-head h4{margin:0;font-size:15px;font-weight:700;color:var(--on-background);display:flex;align-items:center;gap:8px;}
+.count-badge{
+  display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;
+  border-radius:var(--r-full);background:var(--surface-container-low);color:var(--on-surface-variant);
+  font-size:11.5px;font-weight:700;
+}
+.history-list{max-height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:2px;}
+.history-list .hint{padding:14px;text-align:center;margin:0;background:var(--surface-container-low);border-radius:var(--r-lg);}
+.history-row{
+  display:flex;align-items:flex-start;gap:10px;padding:10px;border-radius:var(--r-lg);
+  background:var(--surface-container-low);font-size:13px;color:var(--on-background);
+}
+.history-row-icon{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;background:var(--surface-paper);color:var(--tertiary);
+  display:flex;align-items:center;justify-content:center;
+}
+.history-row-icon svg{width:16px;height:16px;}
+.history-row-body{flex:1;min-width:0;}
+.history-row-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.history-row-top strong{font-size:13px;}
+.history-tag{
+  font-size:10.5px;font-weight:700;color:var(--tertiary);background:var(--tertiary-fixed);
+  padding:2px 8px;border-radius:var(--r-full);
+}
+.history-row-note{margin:4px 0 0;font-size:12.5px;color:var(--on-surface-variant);line-height:1.5;}
+.history-row .icon-btn{width:30px;height:30px;flex-shrink:0;color:var(--outline);}
+.history-row .icon-btn:hover{color:var(--primary);background:var(--surface-paper);}
+
+/* ---- Ghi chú của giáo viên ---- */
+.notes-card{background:var(--surface-paper);border-radius:var(--r-xl);box-shadow:var(--shadow);padding:18px 20px;}
+.notes-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;}
+.notes-card-head h4{margin:0 0 2px;font-size:15px;font-weight:700;color:var(--on-background);}
+.notes-card-head .hint{margin:0;font-size:12px;}
+
+.note-composer{
+  background:var(--surface-container-low);border-radius:var(--r-lg);padding:12px;margin-bottom:16px;
+}
+.note-composer textarea{
+  width:100%;border:none;background:transparent;resize:vertical;font-family:inherit;font-size:13.5px;
+  color:var(--on-background);padding:0;box-sizing:border-box;
+}
+.note-composer textarea:focus{outline:none;}
+.note-composer-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;}
+.attach-hint{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--outline);}
+.attach-hint svg{width:14px;height:14px;}
+
+/* ---- Phân trang cho modal "Xem tất cả lịch sử" ---- */
+.pager{display:flex;align-items:center;justify-content:center;gap:16px;margin:16px 0 4px;}
+.pager-info{font-size:13px;color:var(--on-surface-variant);font-weight:600;min-width:70px;text-align:center;}
+.pager .icon-btn:disabled{opacity:.35;cursor:not-allowed;}
+
+/* ---- Danh sách ghi chú (mỗi ghi chú có mốc thời gian riêng, có thể gắn với 1 lượt gọi) ---- */
+.notes-list{display:flex;flex-direction:column;gap:10px;max-height:420px;overflow-y:auto;padding-right:2px;}
+.notes-list .hint{padding:14px;text-align:center;margin:0;background:var(--surface-container-low);border-radius:var(--r-lg);}
+.note-card{display:flex;align-items:flex-start;gap:10px;background:var(--surface-container-low);border-radius:var(--r-lg);padding:12px 14px;transition:background .3s;}
+.note-card.flash{background:var(--primary-fixed);}
+.note-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:6px;}
+.note-card-body{flex:1;min-width:0;}
+.note-card-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+.note-date{font-size:11.5px;font-weight:700;color:var(--on-surface-variant);}
+.note-tag{
+  display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;color:var(--tertiary);
+  background:var(--tertiary-fixed);padding:2px 8px;border-radius:var(--r-full);
+}
+.note-tag svg{width:11px;height:11px;}
+.note-text{margin:0;font-size:13px;color:var(--on-background);line-height:1.5;white-space:pre-wrap;word-break:break-word;}
+.note-card-actions{display:flex;gap:2px;flex-shrink:0;}
+.note-card-actions .icon-btn{width:26px;height:26px;color:var(--outline);}
+.note-card-actions .icon-btn:hover{color:var(--primary);}
+
+.notes-footer{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  padding-top:10px;margin-top:2px;border-top:1px solid var(--outline-variant);font-size:12px;color:var(--on-surface-variant);
+}
+.link-btn{display:inline-flex;align-items:center;gap:4px;color:var(--primary);font-weight:700;font-size:12.5px;}
+.link-btn svg{width:14px;height:14px;}
+.modal-actions{display:flex;gap:12px;margin-top:8px;}
+.modal-actions .btn{flex:1;}
+/* Popup nhập file: nút không kéo giãn hết hàng — cỡ cố định bằng khoảng 1/2
+   bề ngang mặc định, đổi vị trí căn theo từng bước (chưa chọn file: Hủy căn
+   giữa; đã chọn file: Hủy căn trái, 2 nút xác nhận cùng cỡ căn giữa). */
+.import-cancel-row{justify-content:center;}
+.import-cancel-row.import-cancel-row-left{justify-content:flex-start;}
+.modal-actions .btn.btn-half{flex:0 0 50%;max-width:200px;}
+.import-pair-row{justify-content:center;}
+.modal-actions.import-pair-row .btn{flex:1 1 0;max-width:180px;min-width:0;}
+.preview-table tbody{max-height:180px;}
+.dropzone{
+  border:2px dashed var(--outline-variant);border-radius:var(--r-lg);padding:28px 16px;text-align:center;
+  color:var(--on-surface-variant);cursor:pointer;transition:border-color .15s, background .15s;
+}
+.dropzone:hover{border-color:var(--primary);background:var(--surface-container-low);}
+.dropzone.dragover{border-color:var(--primary);background:var(--surface-container-low);}
+.preview-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+.preview-table th{text-align:left;color:var(--on-surface-variant);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--outline-variant);}
+.preview-table td{padding:6px 8px;border-bottom:1px solid var(--surface-container);}
+.preview-table tbody{display:block;max-height:220px;overflow-y:auto;}
+.preview-table thead, .preview-table tbody tr{display:table;width:100%;table-layout:fixed;}
+
+/* ---------- Dropdown đổi lớp / đổi kiểu quay số (gắn liền nút bấm, không có backdrop) ---------- */
+.class-switcher-dropdown{
+  position:fixed;width:200px;max-width:calc(100vw - 24px);
+  background:var(--surface-paper);border-radius:var(--r-lg);box-shadow:var(--shadow-active);
+  padding:14px;z-index:150;
+}
+.class-switcher-list{max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding-right:2px;}
+.class-switcher-row{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+  padding:12px 14px;border-radius:var(--r-lg);background:var(--surface-container-low);
+  border:2px solid transparent;text-align:left;transition:all .15s;
+}
+.class-switcher-row:hover{background:var(--surface-container);}
+.class-switcher-row.active{border-color:var(--primary);background:var(--primary-fixed);}
+.csr-name{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--on-background);}
+.csr-name svg{width:16px;height:16px;flex-shrink:0;color:var(--on-surface-variant);}
+.csr-name .effect-icon-img{width:18px;height:18px;object-fit:contain;flex-shrink:0;}
+.csr-right{display:flex;align-items:center;gap:8px;color:var(--on-surface-variant);font-size:12px;flex-shrink:0;}
+.csr-right svg{width:18px;height:18px;color:var(--primary);}
+
+/* ---------- Toast ---------- */
+.toast{
+  position:fixed;bottom:104px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink-deep);color:#fff;padding:12px 22px;border-radius:var(--r-full);
+  font-size:14px;font-weight:600;box-shadow:var(--shadow-active);z-index:200;
+  opacity:0;pointer-events:none;transition:all .25s;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---------- Hero-mode routes (Splash/Setup/Dashboard/Chọn game): ẩn topbar/bottomnav phẳng ---------- */
+body.hero-mode .topbar, body.hero-mode .bottomnav, body.hero-mode .fab{display:none;}
+body.hero-mode .main{padding:0;max-width:none;}
+body.hero-mode{background:var(--primary-dark);}
+
+/* ---------- Present mode (tối ưu máy chiếu: phóng to, giữ điều hướng) ---------- */
+body.present .wheel{width:380px;height:380px;}
+body.present .result-name{font-size:56px;}
+body.present .result-avatar-wrap, body.present .result-avatar{width:220px;height:220px;}
+body.present .roster-row-main h4{font-size:18px;}
+body.present .topbar h1{font-size:28px;}
+body.present .navtab span.label{font-size:14px;}
+
+/* ---------- Misc ---------- */
+.center-col{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.text-muted{color:var(--on-surface-variant);}
+.mt-sm{margin-top:12px;} .mt-md{margin-top:24px;} .mb-sm{margin-bottom:12px;}
+.w-full{width:100%;}
+.flex{display:flex;} .items-center{align-items:center;} .gap-sm{gap:8px;} .gap-md{gap:16px;}
+.scroll-x{overflow-x:auto;}
+
+/* ---------- Hero shell (nền họa tiết giáo dục + card trắng nổi) ---------- */
+.hero-shell{
+  position:relative;min-height:100dvh;display:flex;flex-direction:column;
+  background:url("../assets/bg-education.svg") center/cover no-repeat, var(--primary-dark);
+  padding:28px;box-sizing:border-box;
+}
+/* Dòng bản quyền nhỏ, nằm trên nền màu (ngoài khung trắng), đáy màn hình —
+   xuất hiện chung cho mọi trang nhờ đặt vào .hero-shell dùng khắp nơi. */
+.hero-shell::after{
+  content:"© by Thanh Khương";
+  position:absolute;left:0;right:0;bottom:6px;text-align:center;
+  font-size:11px;color:rgba(255,255,255,.75);letter-spacing:.02em;pointer-events:none;
+}
+/* Trang Quay số: khoá đúng 1 màn hình, không cuộn — thanh bar chọn game +
+   giao diện game + nút quay đều phải vừa trong viewport. */
+.hero-shell.fit-screen{height:100dvh;overflow:hidden;}
+.hero-card{
+  position:relative;background:var(--surface-paper);border-radius:20px;
+  box-shadow:0 20px 40px rgba(11,46,66,.35);
+  padding:1.75rem 2rem 2.25rem;flex:1;display:flex;flex-direction:column;
+  max-width:1100px;width:100%;margin:0 auto;
+}
+/* Nền gradient nhẹ cho phần nội dung PHÍA DƯỚI thanh header (Hỗ trợ/Hồ sơ
+   giáo viên) — dừng ở mốc % ứng với chiều cao header nên khu vực logo/tab
+   vẫn giữ nền trắng đặc như mọi trang khác, chỉ phần thân mờ dần sang xanh
+   nhạt cho đỡ trống trải. */
+.soft-bg-card{
+  background:linear-gradient(180deg, var(--surface-paper) 0%, var(--surface-paper) 20%, var(--surface-container-low) 100%);
+}
+/* padding-top GIỮ NGUYÊN bằng .hero-card thường (1.75rem) để logo/tab header
+   luôn đứng đúng 1 vị trí cố định dù chuyển qua màn hình compact (settings/
+   spin/result) hay không — trước đây compact có top nhỏ hơn (1rem) làm
+   header bị "kéo lên" mỗi khi vào các trang đó. */
+.hero-card.compact{min-height:0;overflow:hidden;padding:1.75rem 1.5rem 1.25rem;}
+.hero-card.compact .hero-nav{margin-bottom:.5rem;flex-shrink:0;}
+.hero-card.compact .hero-subheader{margin-bottom:0;flex-shrink:0;}
+.hero-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.75rem;}
+.hero-subheader{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;}
+.hero-subheader h2{margin:0;font-size:20px;color:var(--on-background);}
+.hero-logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:19px;color:var(--on-background);}
+.hero-logo .icon-btn{color:var(--primary);width:auto;height:auto;}
+.hero-logo-img{height:56px;width:auto;object-fit:contain;}
+.hero-logo-img.logo-lg{height:84px;}
+.hero-navlinks{display:flex;gap:26px;font-size:14px;font-weight:600;color:var(--on-background);align-items:center;}
+.hero-navlinks .active{color:var(--primary);font-weight:700;}
+.hero-nav-icon.active{background:var(--secondary-container);color:var(--on-secondary-container);}
+.hero-avatar-chip{
+  position:relative;width:32px;height:32px;border-radius:50%;flex-shrink:0;padding:0;
+  background:var(--surface-container-low);border:1px solid var(--surface-container-highest);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;color:var(--outline);
+}
+.hero-avatar-chip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+
+/* ---- Badge teaser tính năng PRO trên nav bar ---- */
+.nav-pro-badge{display:inline-flex;align-items:center;gap:6px;color:var(--on-surface-variant);transition:color .15s;}
+.nav-pro-badge:hover{color:var(--primary);}
+.pro-tag{
+  background:linear-gradient(135deg,#F5821F,#FFB74D);color:#fff;font-size:9px;font-weight:800;
+  letter-spacing:.04em;padding:2px 7px;border-radius:999px;line-height:1.4;
+}
+
+.pickup-badge{
+  display:inline-flex;align-items:center;gap:8px;background:#FAECE7;color:#993C1D;
+  font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;margin-bottom:14px;letter-spacing:.04em;
+}
+/* Ảnh minh hoạ trang chủ — neo bên phải hero-card. Ẩn ở màn hẹp vì lúc đó
+   .hero-split đã tự xuống 1 cột, ảnh nền cố định theo cột phải không còn
+   khớp vị trí nữa. */
+.home-hero-card{
+  background-image:url("../assets/Bg-mainpage.png");
+  background-repeat:no-repeat;
+  background-position:right 44px top 70px;
+  background-size:min(620px, 52%) auto;
+}
+@media(max-width:720px){.home-hero-card{background-image:none;}}
+.hero-split{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;margin-bottom:1.75rem;}
+@media(max-width:720px){.hero-split{grid-template-columns:1fr;}}
+.hero-split h1{font-size:30px;line-height:1.25;color:var(--on-background);margin:0 0 14px;}
+
+/* Đẩy khối "3 học sinh gần nhất" sát xuống đáy hero-card (thay vì lửng lơ ở giữa) */
+.home-footer{margin-top:auto;padding-top:34px;}
+
+/* Khối màu ôm 3 học sinh: rộng 85%, cao +50%, card nhô lên & cách đáy khối 1/3 */
+.recent-wrap{width:85%;margin:0 auto 0;position:relative;}
+.recent-block{background:linear-gradient(135deg,var(--game-cards),var(--primary-dark-end));border-radius:22px;height:120px;}
+.recent-cards{position:absolute;top:-26px;left:0;right:0;display:grid;grid-template-columns:24.4% 24.4% 24.4%;column-gap:4.1%;justify-content:center;}
+/* Nền kính mờ (glassmorphism) màu xanh lá trong suốt, nổi trên khối gradient
+   .recent-block phía sau — thay cho nền trắng đục cũ. */
+.recent-card{
+  background:rgba(34,197,94,.28);
+  backdrop-filter:blur(12px) saturate(160%);-webkit-backdrop-filter:blur(12px) saturate(160%);
+  border:1px solid rgba(255,255,255,.4);
+  border-radius:12px;box-shadow:0 8px 18px rgba(11,36,54,.18);
+  padding:10px 6px;text-align:center;height:106px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.recent-card.empty{background:var(--surface-container-low);backdrop-filter:none;-webkit-backdrop-filter:none;border:1px dashed var(--outline-variant);box-shadow:none;color:var(--outline);}
+.recent-card .av{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.35);margin:0 auto 6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:12px;overflow:hidden;}
+.recent-card.empty .av{background:var(--surface-container-low);color:var(--primary);}
+.recent-card .av img{width:100%;height:100%;object-fit:cover;}
+.recent-card .nm{margin:0;font-size:11.5px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+.recent-card.empty .nm{color:var(--on-background);}
+.recent-card .dt{margin:3px 0 0;font-size:10px;color:rgba(255,255,255,.85);}
+.recent-card.empty .dt{color:var(--on-surface-variant);}
+
+/* ---------- Splash & Setup ---------- */
+.splash-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.splash-logo{
+  width:96px;height:96px;border-radius:28px;background:linear-gradient(135deg,var(--primary-container),var(--primary-dark));
+  display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 12px 30px rgba(21,93,252,.35);
+  padding:16px;box-sizing:border-box;
+}
+.splash-logo img{width:100%;height:100%;object-fit:contain;}
+.splash-title{font-size:15px;letter-spacing:.08em;color:var(--outline);margin:0 0 6px;font-weight:600;}
+.splash-brand{font-size:38px;font-weight:700;color:var(--on-background);margin:0;letter-spacing:-.01em;}
+.splash-footer{margin-top:auto;padding-top:40px;font-size:13px;color:var(--outline);}
+
+.setup-avatar-pick{position:relative;width:104px;height:104px;margin:0 auto 24px;}
+.setup-avatar-pick .circle{position:relative;width:104px;height:104px;border-radius:50%;background:var(--surface-container-low);display:flex;align-items:center;justify-content:center;color:var(--outline);overflow:hidden;}
+.setup-avatar-pick .circle img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.setup-avatar-pick .cam{
+  position:absolute;bottom:0;right:0;width:34px;height:34px;border-radius:50%;background:var(--primary);
+  color:#fff;display:flex;align-items:center;justify-content:center;border:3px solid #fff;
+}
+.subject-tag{
+  display:inline-flex;align-items:center;gap:6px;background:var(--surface-container-low);color:var(--on-background);
+  padding:6px 12px;border-radius:var(--r-full);font-size:13px;font-weight:600;
+}
+.subject-tag button{color:var(--outline);display:flex;}
+
+@media (min-width: 768px){
+  .bottomnav{display:none;}
+  .main{padding-bottom:var(--md);}
+  .desktop-nav{display:flex;}
+}
+.desktop-nav{
+  display:none;gap:6px;background:var(--surface-container-low);padding:6px;border-radius:var(--r-full);
+}
+.desktop-nav .navtab{padding:8px 18px;}
