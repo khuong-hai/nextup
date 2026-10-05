@@ -760,6 +760,9 @@ a.support-row:hover{box-shadow:var(--shadow-active);}
 .settings-info{text-align:center;padding:var(--md);color:var(--on-surface-variant);font-size:14px;}
 
 /* ---------- Modals ---------- */
+.confirm-modal{max-width:380px;}
+.confirm-msg{margin:0 0 20px;font-size:14px;color:var(--on-surface-variant);line-height:1.5;}
+.btn-danger{background:var(--error);color:#fff;}
 .modal-backdrop{
   position:fixed;inset:0;background:rgba(11,28,48,.45);backdrop-filter:blur(2px);
   display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;

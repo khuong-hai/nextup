@@ -1,5 +1,5 @@
 // Service Worker — cache toàn bộ app để chạy offline hoàn toàn
-const CACHE_NAME = "goi-ten-ngau-nhien-v68";
+const CACHE_NAME = "goi-ten-ngau-nhien-v70";
 const ASSETS = [
   "./",
   "./index.html",
@@ -14,6 +14,7 @@ const ASSETS = [
   "./assets/icons/logo-wordmark.png",
   "./assets/bg-education.svg",
   "./assets/Bg-mainpage.png",
+  "./assets/sounds/common/home_bg.mp3",
   "./assets/sounds/wheel/bg_loop.wav",
   "./assets/sounds/wheel/climax.wav",
   "./assets/sounds/wheel/reveal.wav",
